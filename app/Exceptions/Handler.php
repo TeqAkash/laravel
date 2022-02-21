@@ -38,4 +38,26 @@ class Handler extends ExceptionHandler
             //
         });
     }
+    public function render($request, Throwable $exception){
+       
+        if ($request->wantsJson()&&!$request->ajax()) {
+            if ($exception instanceof \Illuminate\Auth\AuthenticationException) {
+                return response()->json(['status' => false, 'response' => new \stdClass(), 'code' => Response::HTTP_FORBIDDEN, 'message' => 'Unauthenticated.'], Response::HTTP_FORBIDDEN);
+            }
+
+            if ($exception instanceof NotFoundHttpException) {
+                return response()->json(['status' => false, 'response' => new \stdClass(), 'code' => Response::HTTP_FORBIDDEN, 'message' => 'URL not found.'], Response::HTTP_OK);
+            }
+
+            // custom error message
+            if ($exception instanceof \ErrorException) {
+                \Log::error($exception->getMessage());
+                \Log::error($exception->getTraceAsString());
+                
+                return response()->json(['status' => false, 'response' => new \stdClass(), 'code' => Response::HTTP_UNPROCESSABLE_ENTITY, 'message' => 'Server Error.'], Response::HTTP_OK);
+            }
+            // } else if ($exception instanceof ValidationException) {
+        }
+                return parent::render($request, $exception);
+    }
 }
