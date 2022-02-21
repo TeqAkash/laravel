@@ -36,14 +36,7 @@ class AuthenticationController extends Controller
     }
     public function signin(Request $request)
     {
-        $attr = $request->validate([
-            'email' => 'required|string|email|',
-            'password' => 'required|string|min:6'
-        ]);
-
-        if (!Auth::attempt($attr)) {
-            return $this->error('Credentials not match', 401);
-        }
+        
 
         return $this->response([
             'token' => auth()->user()->createToken('API Token')->plainTextToken

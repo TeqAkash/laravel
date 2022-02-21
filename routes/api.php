@@ -19,7 +19,7 @@ use App\Http\Controllers\AuthenticationController;
 Route::post('/create-account', [AuthenticationController::class, 'createAccount']);
 
 //login user
-Route::post('/signin', [AuthenticationController::class, 'signin']);
+Route::get('/signin', [AuthenticationController::class, 'signin']);
 
 //using middleware
 Route::group(['middleware' => ['auth:sanctum']], function () {
