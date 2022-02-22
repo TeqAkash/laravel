@@ -36,8 +36,6 @@ class AuthenticationController extends Controller
     }
     public function signin(Request $request)
     {
-        
-
         return $this->response([
             'token' => auth()->user()->createToken('API Token')->plainTextToken
         ]);
@@ -52,5 +50,4 @@ class AuthenticationController extends Controller
             'message' => 'Tokens Revoked'
         ];
     }
-
 }
