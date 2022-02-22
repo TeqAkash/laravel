@@ -53,7 +53,8 @@ class RegisteredUserController extends Controller
     }
     public function index()
     {
-        $data['user'] = User::orderBy('id','desc')->paginate(5);
-        return view('auth.index', $data);
+        // $user = 
+        $data = User::orderBy('id','desc')->get();
+        return view('dashboard',compact('data'));
     } 
 }
