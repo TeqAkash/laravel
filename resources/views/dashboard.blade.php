@@ -28,16 +28,16 @@
             </tr>
           </thead class="border-b">
           <tbody>
-            @foreach($data as $user)
+          
             <tr class="bg-white border-b">
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-              {{$user->id}}
+              {{$data->id}}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-              {{$user->name}}
+              {{$data->name}}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                         {{$user->email}}
+              {{$data->email}}
 
               </td>
              
@@ -48,7 +48,7 @@
 </form>
               </td>
             </tr class="bg-white border-b">
-            @endforeach
+           
           
            
           </tbody>

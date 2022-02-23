@@ -54,7 +54,7 @@ class RegisteredUserController extends Controller
     public function index()
     {
         // $user = 
-        $data = User::orderBy('id','desc')->get();
+        $data = Auth::User();
         return view('dashboard',compact('data'));
     } 
 }
